@@ -21,7 +21,7 @@
 	<meta name="twitter:card" content="" />
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <link rel="shortcut icon" href="favicon.ico"> -->
 
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
@@ -35,7 +35,7 @@
 	<!-- Flexslider  -->
 	<link rel="stylesheet" href="css/flexslider.css">
 	<!-- Flaticons  -->
-	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+	<!-- <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css"> -->
 	<!-- Owl Carousel -->
 	<link rel="stylesheet" href="css/owl.carousel.min.css">
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
@@ -48,6 +48,15 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<!-- <script>
+$(document).ready(function(){
+    $("li").click(function(){
+        window.location=$(this).data("href");
+    });
+});
+</script> -->
 
 	</head>
 	<body>
@@ -194,7 +203,58 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 				</div>
 			</section>
 
-
+			<!-- <section class="colorlib-work" data-section="work">
+				<div class="colorlib-narrow-content">
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+							<span class="heading-meta">My Work</span>
+							<h2 class="colorlib-heading animate-box">Recent Work</h2>
+						</div>
+					</div>
+					<div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
+						<div class="col-md-12">
+							<p class="work-menu">
+								<span><a href="#" class="filter" data-filter=".all">All</a></span> 
+								<span><a href="#" class="filter" data-filter=".lan"> Languages, Framework and Database</a></span> 
+								<span><a href="#" class="filter" data-filter=".webt">Web Technologies, Software</a></span> 
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
+							<div class="project all lan" style="background-image: url(images/img-1.jpg);">
+								<div class="desc">
+									<div class="con">
+										<h3><a href="work.html">Work 01</a></h3>
+										<span>Website</span>
+										<p class="icon">
+											<span><a href="#"><i class="icon-share3"></i></a></span>
+											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
+											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
+							<div class="project all webt" style="background-image: url(images/img-2.jpg);">
+								<div class="desc">
+									<div class="con">
+										<h3><a href="work.html">Work 02</a></h3>
+										<span>Animation</span>
+										<p class="icon">
+											<span><a href="#"><i class="icon-share3"></i></a></span>
+											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
+											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>	
+											
+					</div>
+				</div>
+			</section> -->
 			
 			<section class="colorlib-services" data-section="services">
 				<div class="colorlib-narrow-content">
@@ -917,7 +977,49 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 		</div><!-- end:colorlib-main -->
 	</div><!-- end:container-wrap -->
 	</div><!-- end:colorlib-page -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+	//   $(document).ready(function(){
+		
+	// 	// Hide all project boxes except the ones with class link1
+	// 	$(".project").not(".link1").hide();
+	// 	// Add active class to the All filter link
+	// 	$(".filter[data-filter='.link1']").addClass("active");
+	// 	// Handle the click event on the filter links
+	// 	$(".filter").click(function(){
+	// 	  // Remove the active class from the previous filter link
+	// 	  $(".filter").removeClass("active");
+	// 	  // Add the active class to the current filter link
+	// 	  $(this).addClass("active");
+	// 	  // Get the data-filter value of the clicked link
+	// 	  var filter = $(this).attr("data-filter");
+	// 	  // Show the project boxes that match the filter value
+	// 	  $(".project").filter(filter).show();
+	// 	  // Hide the project boxes that do not match the filter value
+	// 	  $(".project").not(filter).hide();
+	// 	});
+	//   });
+	$(".filter").click(function(event){
+  // Prevent the default action
+  event.preventDefault();
+  
+  // Remove the active class from the previous filter link
+  $(".filter").removeClass("active");
+  
+  // Add the active class to the current filter link
+  $(this).addClass("active");
+  
+  // Get the data-filter value of the clicked link
+  var filter = $(this).attr("data-filter");
 
+     // Show the project boxes that match the filter value and their parent divs
+  $(".project").filter(filter).parent().show();
+  
+  // Hide the project boxes that do not match the filter value and their parent divs
+  $(".project").not(filter).parent().hide();
+// });
+});
+	</script>
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -937,6 +1039,9 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 	<!-- MAIN JS -->
 	<script src="js/main.js"></script>
 
+	
+
 	</body>
 </html>
+
 
