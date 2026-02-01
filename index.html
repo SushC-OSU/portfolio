@@ -1047,32 +1047,109 @@
             }
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 101;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled.nav-dark .hamburger span {
+            background: var(--ink);
+        }
+
+        nav.scrolled.nav-light .hamburger span {
+            background: var(--cream);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
         @media (max-width: 768px) {
             nav {
-                padding: 1rem;
+                padding: 1rem 1.5rem;
             }
 
-            .logo {
-                font-size: 1.5rem;
+            .hamburger {
+                display: flex;
             }
 
             .nav-links {
-                gap: 0.5rem;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--ink);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                mix-blend-mode: normal;
+            }
+
+            .nav-links.active {
+                right: 0;
             }
 
             .nav-links a {
-                font-size: 0.75rem;
-                padding: 0.4rem 0;
+                color: var(--cream);
+                font-size: 1.25rem;
+                padding: 0.5rem 1.5rem;
             }
 
-            nav.scrolled .logo {
-                padding: 0.4rem 0.8rem;
-                font-size: 1.3rem;
+            .nav-links a::before {
+                display: none;
             }
 
             nav.scrolled .nav-links a {
-                padding: 0.4rem 0.6rem;
-                font-size: 0.7rem;
+                background: transparent;
+                color: var(--cream);
+            }
+
+            nav.scrolled .nav-links a:hover {
+                background: var(--coral);
+                border-radius: 50px;
+            }
+
+            .mobile-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                z-index: 99;
+            }
+
+            .mobile-overlay.active {
+                opacity: 1;
+                visibility: visible;
             }
 
             section {
@@ -1131,7 +1208,13 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#contact">Say Hello</a></li>
         </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
+    <div class="mobile-overlay"></div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1612,6 +1695,30 @@
 
         window.addEventListener('scroll', handleNavScroll);
         handleNavScroll();
+
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const mobileOverlay = document.querySelector('.mobile-overlay');
+
+        const toggleMenu = () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        };
+
+        hamburger.addEventListener('click', toggleMenu);
+        mobileOverlay.addEventListener('click', toggleMenu);
+
+        // Close menu when a nav link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
 
         // Parallax effect on shapes
         document.addEventListener('mousemove', (e) => {
