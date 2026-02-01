@@ -1049,11 +1049,30 @@
 
         @media (max-width: 768px) {
             nav {
-                padding: 1rem 1.5rem;
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
             }
 
             .nav-links {
-                display: none;
+                gap: 0.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.75rem;
+                padding: 0.4rem 0;
+            }
+
+            nav.scrolled .logo {
+                padding: 0.4rem 0.8rem;
+                font-size: 1.3rem;
+            }
+
+            nav.scrolled .nav-links a {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.7rem;
             }
 
             section {
