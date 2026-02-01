@@ -1088,10 +1088,16 @@
         @media (max-width: 768px) {
             nav {
                 padding: 1rem 1.5rem;
+                mix-blend-mode: normal;
+            }
+
+            .logo {
+                mix-blend-mode: difference;
             }
 
             .hamburger {
                 display: flex;
+                mix-blend-mode: difference;
             }
 
             .nav-links {
@@ -1101,13 +1107,15 @@
                 width: 70%;
                 max-width: 300px;
                 height: 100vh;
-                background: var(--ink);
+                background: var(--ink) !important;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 gap: 2rem;
                 transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                mix-blend-mode: normal;
+                mix-blend-mode: normal !important;
+                isolation: isolate;
+                z-index: 100;
             }
 
             .nav-links.active {
@@ -1124,14 +1132,22 @@
                 display: none;
             }
 
-            nav.scrolled .nav-links a {
+            /* Force dark theme for nav menu content - consistent across all sections including hero */
+            .nav-links a,
+            nav.scrolled .nav-links a,
+            nav.scrolled.nav-dark .nav-links a,
+            nav.scrolled.nav-light .nav-links a {
                 background: transparent;
                 color: var(--cream);
             }
 
-            nav.scrolled .nav-links a:hover {
+            .nav-links a:hover,
+            nav.scrolled .nav-links a:hover,
+            nav.scrolled.nav-dark .nav-links a:hover,
+            nav.scrolled.nav-light .nav-links a:hover {
                 background: var(--coral);
                 border-radius: 50px;
+                color: white;
             }
 
             .mobile-overlay {
